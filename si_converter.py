@@ -12,7 +12,7 @@ def si_converter(size_kb):
     prefixes = ["kB", "MB", "GB", "TB", "PB"]
     prefix_idx = 0
     size_kb = int(size_kb)
-    while(size_kb > 1000):
+    while(size_kb > 1000) and prefix_idx < len(prefixes) - 1:
         size_kb = round(size_kb/1000, 1)
         prefix_idx += 1
 
@@ -37,6 +37,7 @@ def main():
     assert si_converter("999901")      == "1000MB", si_converter("999901")
     assert si_converter("42000000000") == "42TB", si_converter("42000000000")
     assert si_converter("4200000000000") == "4.2PB", si_converter("4200000000000")
+    assert si_converter("42000000000000000") == "42000PB", si_converter("42000000000000000")
 
 if __name__ == '__main__':
     main()

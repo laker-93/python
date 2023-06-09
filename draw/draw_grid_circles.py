@@ -34,6 +34,9 @@ def main():
             top = y * scale_factor
             right = left + scale_factor
             bottom = top + scale_factor
+            # Set the background color as a random light gray
+            background_gray_value = random.randint(200, 255)
+            color = (background_gray_value, background_gray_value, background_gray_value)
             # for each box iterate through the circles and see if it is intersected by any of them
             for i, circle_radius in enumerate(circle_radii):
                 distance = ((left - center_x)**2 + (bottom - center_y)**2) ** 0.5
@@ -42,12 +45,7 @@ def main():
                     gray_value = int((1 / ((distance + 200) / (image_width // 2))) * (200))
                     color = (gray_value, gray_value, gray_value)
                     break
-                else:
-                    # Set the background color as a random light gray
-                    background_gray_value = random.randint(200, 255)
-                    color = (background_gray_value, background_gray_value, background_gray_value)
 
-            # Draw the box with the calculated color
             draw.rectangle([left, top, right, bottom], fill=color)
 
     # Save the image as a PNG file
